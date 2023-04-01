@@ -1,5 +1,12 @@
 "use client";
-import { Box, Button, Stack, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Checkbox,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
 import axios from "axios";
 import React, { useState } from "react";
 import { APIURL } from "../api/hello/users";
@@ -11,6 +18,8 @@ import Link from "next/link";
 const Create = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [checked, setChecked] = useState(false);
   const router = useRouter();
 
   const sendData = async () => {
@@ -21,6 +30,8 @@ const Create = () => {
     await axios.post(APIURL, {
       firstName,
       lastName,
+      email,
+      checked,
     });
     router.push("/read");
   };
@@ -62,6 +73,20 @@ const Create = () => {
             />
           </Box>
           <Box>
+            <TextField
+              id="outlined-basic"
+              label="E-mail"
+              type="email"
+              name="email"
+              onChange={(e) => setEmail(e.target.value)}
+              variant="outlined"
+            />
+          </Box>
+          <Box>
+            <Typography>Status</Typography>
+            <Checkbox onChange={(e) => setChecked(e.target.value)} />
+          </Box>
+          <Box>
             <Button variant="contained" onClick={sendData}>
               Create
             </Button>
@@ -69,7 +94,12 @@ const Create = () => {
         </Stack>
       </Box>
       <Link href={"/read"}>
-        <Button variant="contained" color="warning" size="large" startIcon={<FormatList />}>
+        <Button
+          variant="contained"
+          color="warning"
+          size="large"
+          startIcon={<FormatList />}
+        >
           List of Users
         </Button>
       </Link>

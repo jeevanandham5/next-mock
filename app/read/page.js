@@ -20,6 +20,8 @@ import Link from "next/link";
 import DeleteIcon from "@mui/icons-material/DeleteForever";
 import EditIcon from "@mui/icons-material/Edit";
 import HomeIcon from "@mui/icons-material/Home";
+import GppGoodIcon from "@mui/icons-material/GppGood";
+import GppMaybeIcon from "@mui/icons-material/GppMaybe";
 
 export default function Read() {
   const [readData, setReadData] = useState([]);
@@ -31,10 +33,12 @@ export default function Read() {
     getData();
   }, []);
 
-  const setData = (id, firstName, lastName) => {
+  const setData = (id, firstName, lastName, email, checked) => {
     localStorage.setItem("id", id);
     localStorage.setItem("firstName", firstName);
     localStorage.setItem("lastName", lastName);
+    localStorage.setItem("email", email);
+    localStorage.setItem("checked", checked);
   };
 
   const getData = () => {
@@ -58,7 +62,7 @@ export default function Read() {
         }}
       >
         <Typography textAlign={"center"} variant="h2">
-          Read
+          List of users
         </Typography>
         <TableContainer>
           <Table>
@@ -75,6 +79,12 @@ export default function Read() {
                 </TableCell>
                 <TableCell align="center">
                   <Typography variant="h4">LastName</Typography>
+                </TableCell>
+                <TableCell align="center">
+                  <Typography variant="h4">Email</Typography>
+                </TableCell>
+                <TableCell align="center">
+                  <Typography variant="h4">Status</Typography>
                 </TableCell>
                 <TableCell align="center">
                   <Typography variant="h4">Update</Typography>
@@ -95,6 +105,7 @@ export default function Read() {
                       <Avatar
                         alt="img"
                         src={"https://i.pravatar.cc/150?img=/" + data.id}
+                        sx={{ width: 60, height: 60 }}
                       />
                     </TableCell>
                     <TableCell align="left">
@@ -104,12 +115,34 @@ export default function Read() {
                       <Typography variant="h5">{data.lastName}</Typography>
                     </TableCell>
                     <TableCell align="center">
+                      <Typography variant="h5">{data.email}</Typography>
+                    </TableCell>
+                    <TableCell align="center">
+                      <Typography variant="h5">
+                        {data.checked ? (
+                          <GppGoodIcon
+                            sx={{ color: "#64dd17", fontSize: "40px" }}
+                          />
+                        ) : (
+                          <GppMaybeIcon
+                            sx={{ color: "#ff9800", fontSize: "40px" }}
+                          />
+                        )}
+                      </Typography>
+                    </TableCell>
+                    <TableCell align="center">
                       <Link href={"/update"}>
                         <Button
                           variant="contained"
                           color="success"
                           onClick={() =>
-                            setData(data.id, data.firstName, data.lastName)
+                            setData(
+                              data.id,
+                              data.firstName,
+                              data.lastName,
+                              data.email,
+                              data.checked
+                            )
                           }
                           startIcon={<EditIcon />}
                         >
@@ -121,9 +154,10 @@ export default function Read() {
                       <IconButton
                         variant="contained"
                         color="error"
+                        size="large"
                         onClick={() => onDelete(data.id)}
                       >
-                        <DeleteIcon />
+                        <DeleteIcon sx={{ fontSize: 40 }} />
                       </IconButton>
                     </TableCell>
                   </TableRow>

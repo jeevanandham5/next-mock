@@ -3,6 +3,7 @@ import {
   Avatar,
   Box,
   Button,
+  Checkbox,
   Stack,
   TextField,
   Typography,
@@ -18,12 +19,16 @@ import EditIcon from "@mui/icons-material/Edit";
 export default function Update() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [checked, setChecked] = useState(false);
   const [id, setID] = useState("");
 
   const sendData = () => {
     axios.put(APIURL + id, {
       firstName,
       lastName,
+      email,
+      checked,
     });
   };
 
@@ -31,6 +36,8 @@ export default function Update() {
     setFirstName(localStorage.getItem("firstName"));
     setLastName(localStorage.getItem("lastName"));
     setID(localStorage.getItem("id"));
+    setEmail(localStorage.getItem("email"));
+    setChecked(localStorage.getItem("checked"));
   }, []);
 
   return (
@@ -54,7 +61,7 @@ export default function Update() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            margin:"20px"
+            margin: "20px",
           }}
         >
           <Avatar
@@ -83,6 +90,18 @@ export default function Update() {
             onChange={(e) => setLastName(e.target.value)}
             variant="outlined"
           />
+          <TextField
+            id="outlined-basic"
+            label="Email"
+            value={email}
+            name="email"
+            onChange={(e) => setEmail(e.target.value)}
+            variant="outlined"
+          />
+          <Box>
+            <Typography>Not a robot</Typography>
+            <Checkbox onChange={(e) => setChecked(e.target.value)} />
+          </Box>
           <Box>
             <Link href={"/read"}>
               <Button
