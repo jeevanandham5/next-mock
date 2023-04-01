@@ -93,7 +93,7 @@ export default function Read() {
                     </TableCell>
                     <TableCell align="center">
                       <Avatar
-                        alt="Remy Sharp"
+                        alt="img"
                         src={"https://i.pravatar.cc/150?img=/" + data.id}
                       />
                     </TableCell>
@@ -134,7 +134,12 @@ export default function Read() {
         </TableContainer>
       </Box>
       <Link href={"/"}>
-        <Button variant="contained" color="warning" size="large" startIcon={<HomeIcon />}>
+        <Button
+          variant="contained"
+          color="warning"
+          size="large"
+          startIcon={<HomeIcon />}
+        >
           Back to Home
         </Button>
       </Link>

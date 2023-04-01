@@ -1,5 +1,12 @@
 "use client";
-import { Box, Button, Stack, TextField, Typography } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  Button,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { APIURL } from "../api/hello/users";
@@ -42,6 +49,20 @@ export default function Update() {
         <Typography variant="h4" sx={{ color: "#ef6c00" }}>
           Wellcome Back {firstName} {lastName}
         </Typography>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            margin:"20px"
+          }}
+        >
+          <Avatar
+            alt="img"
+            src={"https://i.pravatar.cc/150?img=/" + id}
+            sx={{ width: 100, height: 100 }}
+          />
+        </Box>
         <Typography variant="h5" margin={5}>
           Update Your Account
         </Typography>
