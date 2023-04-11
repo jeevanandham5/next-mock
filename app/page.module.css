@@ -3,8 +3,6 @@
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  
-
 
   min-height: 100vh;
 }
@@ -99,7 +97,7 @@
 
 .center::before,
 .center::after {
-  content: '';
+  content: "";
   left: 50%;
   position: absolute;
   filter: blur(45px);
@@ -127,7 +125,7 @@
 
 .thirteen::before,
 .thirteen::after {
-  content: '';
+  content: "";
   position: absolute;
   z-index: -1;
 }
@@ -270,4 +268,17 @@
   to {
     transform: rotate(0deg);
   }
+}
+.Voice {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  min-height: 100vh;
+}
+.input {
+  height: 500px;
+  width: 400px;
+  border-radius: 20px;
+  padding: 40px;
 }

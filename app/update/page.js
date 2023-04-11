@@ -16,6 +16,7 @@ import Link from "next/link";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import EditIcon from "@mui/icons-material/Edit";
 
+
 export default function Update() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
